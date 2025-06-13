@@ -119,13 +119,13 @@ This account is guaranteed to work every time.
 ![Confusion Matrix](../images/confusion_matrix.png)
 
 ### 2. 🔍 Feature Importance
-![Feature Importance](images/feature_importance.png)
+![Feature Importance](../images/feature_importance.png)
 
 ### 3. 📈 Team-wise Toss to Win Conversion Rate
-![Conversion Rate](images/conversion_rate.png)
+![Conversion Rate](../images/conversion_rate.png)
 
 ### 4. 🧠 Toss Decision Impact
-![Toss Win Probability](images/toss_win_probability.png)
+![Toss Win Probability](../images/toss_win_probability.png)
 
 
 ## Contributing
