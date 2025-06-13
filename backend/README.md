@@ -1,64 +1,45 @@
 # IPL Toss to Win Predictor Backend
 
-This is the backend service for the IPL Toss to Win Predictor. It provides a machine learning model that predicts match outcomes based on toss decisions and other match factors in IPL cricket matches.
+**A Flask-based REST API serving machine learning predictions for IPL matches.**  
+Highlights my skills in data engineering, ML modeling, and API development.
 
-## Features
+---
 
-- RESTful API endpoints for match prediction
-- Machine Learning model trained on historical IPL data
-- Flask-based web server with CORS support
-- Pickle-based model serialization
-- Data preprocessing and feature engineering
+## ✨ Why This Backend is Impressive
 
-## Tech Stack
+- **Data Engineering:**  
+  - Cleaned and processed IPL match data for robust model training.
+- **Machine Learning:**  
+  - Trained a Random Forest Classifier with feature engineering and model evaluation.
+  - Saved and loaded models with pickle for fast predictions.
+- **API Development:**  
+  - RESTful endpoints for predictions, with JWT authentication.
+  - Dockerized for easy deployment.
 
-- Python 3.x
-- Flask (Web Framework)
-- Scikit-learn (Machine Learning)
-- Pandas (Data Processing)
-- Flask-CORS (Cross-Origin Resource Sharing)
+---
 
-## Project Structure
+## 🛠️ Tech Stack
 
-```
-backend/
-├── app.py              # Main Flask application
-├── ipl.py             # IPL data processing and model training
-├── matches.csv        # Historical IPL match data
-├── requirements.txt   # Python dependencies
-├── run.sh            # Shell script to run the server
-├── model_features.pkl # Saved model features
-└── ipl_toss_win_model.pkl # Trained ML model
-```
+- Python 3.x, Flask, scikit-learn, Pandas
 
-## Getting Started
+---
 
-1. Create and activate a virtual environment:
+## 🚀 Getting Started
+
 ```bash
 python -m venv venv
-source venv/bin/activate  # On Windows use: venv\Scripts\activate
-```
-
-2. Install dependencies:
-```bash
+source venv/bin/activate
 pip install -r requirements.txt
-```
-
-3. Start the server:
-```bash
 python app.py
-# Or use the shell script:
-./run.sh
 ```
+- Server runs at [http://localhost:5010](http://localhost:5010)
 
-The server will start on http://localhost:5002
+---
 
-## API Endpoints
+## 🧩 API Endpoints
 
-### Predict Match Outcome
-- **URL**: `/predict`
-- **Method**: `POST`
-- **Data Parameters**:
+### POST `/predict`
+- **Body:**
   ```json
   {
     "team1": "string",
@@ -68,49 +49,83 @@ The server will start on http://localhost:5002
     "city": "string"
   }
   ```
-- **Success Response**:
+- **Response:**
   ```json
   {
-    "result": "string"
+    "result": "string",
+    "confidence": 0.85
   }
   ```
 
-## Model Information
+---
 
-The prediction model is trained on historical IPL match data and considers various factors including:
-- Team performance
-- Toss decisions
-- Venue statistics
-- Historical head-to-head records
+## 📊 Data Science & ML Highlights
 
-## Environment Setup
+- **Feature Engineering:**  
+  - Encoded teams, venues, and toss decisions for model input.
+- **Model Evaluation:**  
+  - Used confusion matrix, feature importance, and conversion rate charts.
+- **Retraining:**  
+  - Easily update the model with new data by running `ipl.py`.
 
-Requirements:
-- Python 3.x
-- pip package manager
-- Virtual environment (recommended)
+---
 
-## Data Sources
+## 🤝 Contributing
 
-The model is trained using historical IPL match data from matches.csv, which includes:
-- Match results
-- Toss decisions
-- Team information
-- Venue details
+- Fork, branch, commit, and PR as usual!
+- This backend is a showcase of my data analysis, ML, and API skills.
+
+## Overview
+This is the backend for the IPL Toss-to-Win Predictor application. It provides APIs for user authentication, match predictions, and analysis.
+
+## Setup
+1. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. Configure the database:
+   - Ensure PostgreSQL is running and accessible.
+   - Update the `DATABASE_URL` in `app.py` if necessary.
+
+3. Initialize the database:
+   ```bash
+   python init_db.py
+   ```
+
+4. Run the application:
+   ```bash
+   ./run.sh
+   ```
+
+## Default Test Account
+For testing purposes, you can use the following account:
+
+- **Username:** PRAVESH  
+- **Password:** PRAVESH
+
+This account is guaranteed to work every time.
+
+## API Endpoints
+- `/auth/register`: Register a new user.
+- `/auth/login`: Login with existing credentials.
+- `/auth/profile`: Get user profile (requires authentication).
+- `/predict`: Get match predictions (requires authentication).
+- `/analysis/stats`: Get analysis statistics.
+
+## 📊 Data Visualization Techniques
+
+### 1. 🎯 Confusion Matrix
+![Confusion Matrix](images/confusion_matrix.png)
+
+### 2. 🔍 Feature Importance
+![Feature Importance](images/feature_importance.png)
+
+### 3. 📈 Team-wise Toss to Win Conversion Rate
+![Conversion Rate](images/conversion_rate.png)
+
+### 4. 🧠 Toss Decision Impact
+![Toss Win Probability](images/toss_win_probability.png)
 
 ## Contributing
-
-Feel free to submit issues and enhancement requests. To contribute:
-
-1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
-
-## Maintenance
-
-To retrain the model with new data:
-1. Update matches.csv with new match data
-2. Run ipl.py to retrain the model
-3. The new model will be saved automatically 
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.

@@ -1,70 +1,83 @@
-# Getting Started with Create React App
+# IPL Toss to Win Predictor Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**A modern, interactive React app for IPL match predictions and analytics.**  
+Demonstrates advanced UI/UX, API integration, and data visualization skills.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## ✨ What Makes This Frontend Special?
 
-### `npm start`
+- **Data Visualization:**  
+  - Dynamic radar charts, conversion rates, and performance metrics.
+  - Intuitive, color-coded prediction history for easy analysis.
+- **UI/UX:**  
+  - Glassmorphic, GenZ-inspired design with animated effects.
+  - Responsive layout for all devices.
+- **Full Stack Integration:**  
+  - Secure authentication and protected routes.
+  - Real-time API calls to a custom Flask backend.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠️ Tech Stack
 
-### `npm test`
+- React.js, Material-UI, Chart.js, Axios, React Router
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 🚀 Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm install
+npm start
+```
+- App runs at [http://localhost:3000](http://localhost:3000)
+- Set `REACT_APP_API_URL` in `.env` to your backend URL.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🏆 Feature Highlights
 
-### `npm run eject`
+- **Prediction Form:**  
+  - Validates user input and provides instant feedback.
+- **History Table:**  
+  - Shows both predicted and actual outcomes, with color-coded chips.
+- **Analysis Page:**  
+  - Full-width, immersive charts and stats for deep IPL insights.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📁 Project Structure
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Overview
+This is the frontend for the IPL Toss-to-Win Predictor application. It provides a user interface for interacting with the backend APIs.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Setup
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-## Learn More
+2. Run the application:
+   ```bash
+   npm start
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Default Test Account
+For testing purposes, you can use the following account:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **Username:** PRAVESH  
+- **Password:** PRAVESH
 
-### Code Splitting
+This account is guaranteed to work every time.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Features
+- User authentication (login/register).
+- Match predictions and analysis.
+- Responsive and modern UI.
 
-### Analyzing the Bundle Size
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Contributing
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.

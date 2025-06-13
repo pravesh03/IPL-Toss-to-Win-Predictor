@@ -14,11 +14,37 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report, confusion_matrix
 import seaborn as sns
 import matplotlib.pyplot as plt
+import joblib
+
+# Team name mappings
+TEAM_NAME_MAPPINGS = {
+    "Delhi Capitals": ["Delhi Daredevils", "Delhi Capitals"],
+    "Punjab Kings": ["Kings XI Punjab", "Punjab Kings"],
+    "Mumbai Indians": ["Mumbai Indians"],
+    "Chennai Super Kings": ["Chennai Super Kings"],
+    "Kolkata Knight Riders": ["Kolkata Knight Riders"],
+    "Rajasthan Royals": ["Rajasthan Royals"],
+    "Royal Challengers Bangalore": ["Royal Challengers Bangalore"],
+    "Sunrisers Hyderabad": ["Sunrisers Hyderabad"],
+    "Lucknow Super Giants": ["Lucknow Super Giants"],
+    "Gujarat Titans": ["Gujarat Titans"]
+}
+
+def get_canonical_team_name(team_name):
+    """Convert historical team names to their current names"""
+    for current_name, historical_names in TEAM_NAME_MAPPINGS.items():
+        if team_name in historical_names:
+            return current_name
+    return team_name
 
 # Load the dataset
 file = pd.read_csv('matches.csv')
 
-file.head()
+# Convert historical team names to current names
+file['team1'] = file['team1'].apply(get_canonical_team_name)
+file['team2'] = file['team2'].apply(get_canonical_team_name)
+file['toss_winner'] = file['toss_winner'].apply(get_canonical_team_name)
+file['winner'] = file['winner'].apply(get_canonical_team_name)
 
 # Drop irrelevant columns
 file = file.drop(['umpire1', 'umpire2', 'date', 'dl_applied', 'id', 'venue'], axis=1)
@@ -51,6 +77,11 @@ plt.title("Confusion Matrix")
 plt.show()
 
 def predict_toss_win_effect(team1, team2, toss_winner, toss_decision, city):
+    # Convert team names to current names
+    team1 = get_canonical_team_name(team1)
+    team2 = get_canonical_team_name(team2)
+    toss_winner = get_canonical_team_name(toss_winner)
+    
     input_df = pd.DataFrame({
         'team1': [team1],
         'team2': [team2],
@@ -65,8 +96,45 @@ def predict_toss_win_effect(team1, team2, toss_winner, toss_decision, city):
     pred = model.predict_proba(input_encoded)[0][1]
     return f"Probability of Toss Winner also winning the match: {pred:.2f}"
 
-# Example
-print(predict_toss_win_effect('Mumbai Indians', 'Chennai Super Kings', 'Mumbai Indians', 'bat', 'Mumbai'))
+# Save the model and features
+joblib.dump(model, 'ipl_toss_win_model.pkl')
+joblib.dump(X.columns.tolist(), 'model_features.pkl')
+
+# Create new column: did toss winner win the match?
+file['toss_win_match_win'] = (file['toss_winner'] == file['winner']).astype(int)
+
+# Group and plot
+toss_decision_outcome = file.groupby('toss_decision')['toss_win_match_win'].mean().reset_index()
+
+# Plot toss decision effect
+plt.figure(figsize=(6, 4))
+sns.barplot(x='toss_decision', y='toss_win_match_win', data=toss_decision_outcome)
+plt.title('Effect of Toss Decision on Match Win (%)')
+plt.ylabel('Win Probability')
+plt.xlabel('Toss Decision')
+plt.ylim(0, 1)
+plt.grid(True, linestyle='--', alpha=0.4)
+plt.tight_layout()
+plt.show()
+
+# Team conversion analysis
+team_conversion = file[file['toss_winner'].notnull()].copy()
+team_conversion['conversion'] = (team_conversion['toss_winner'] == team_conversion['winner']).astype(int)
+
+# Group by toss_winner and get average conversion
+team_conversion_rate = team_conversion.groupby('toss_winner')['conversion'].mean().reset_index()
+team_conversion_rate = team_conversion_rate.sort_values(by='conversion', ascending=False)
+
+# Plot team conversion rates
+plt.figure(figsize=(12, 6))
+sns.barplot(x='conversion', y='toss_winner', data=team_conversion_rate, palette='coolwarm')
+plt.title('Team-wise Toss to Match Win Conversion Rate')
+plt.xlabel('Conversion Rate')
+plt.ylabel('Team')
+plt.xlim(0, 1)
+plt.grid(True, linestyle='--', alpha=0.3)
+plt.tight_layout()
+plt.show()
 
 importances = model.feature_importances_
 features_list = X.columns
@@ -119,14 +187,6 @@ best_model = grid_search.best_estimator_
 best_pred = best_model.predict(X_test)
 print("Tuned Random Forest Accuracy:", best_model.score(X_test, y_test))
 
-import joblib
-
-# Save the best model
-joblib.dump(best_model, 'ipl_toss_win_model.pkl')
-
-# Save column structure for future prediction
-joblib.dump(X.columns.tolist(), 'model_features.pkl')
-
 def predict_saved_model(team1, team2, toss_winner, toss_decision, city):
     model = joblib.load('ipl_toss_win_model.pkl')
     model_cols = joblib.load('model_features.pkl')
@@ -147,40 +207,4 @@ def predict_saved_model(team1, team2, toss_winner, toss_decision, city):
 
 # Example usage:
 print(predict_saved_model('Mumbai Indians', 'Delhi Capitals', 'Mumbai Indians', 'bat', 'Mumbai'))
-
-# Create new column: did toss winner win the match?
-file['toss_win_match_win'] = (file['toss_winner'] == file['winner']).astype(int)
-
-# Group and plot
-toss_decision_outcome = file.groupby('toss_decision')['toss_win_match_win'].mean().reset_index()
-
-# Plot
-plt.figure(figsize=(6, 4))
-sns.barplot(x='toss_decision', y='toss_win_match_win', data=toss_decision_outcome)
-plt.title('Effect of Toss Decision on Match Win (%)')
-plt.ylabel('Win Probability')
-plt.xlabel('Toss Decision')
-plt.ylim(0, 1)
-plt.grid(True, linestyle='--', alpha=0.4)
-plt.tight_layout()
-plt.show()
-
-# Filter out rows where toss_winner is not null
-team_conversion = file[file['toss_winner'].notnull()].copy()
-team_conversion['conversion'] = (team_conversion['toss_winner'] == team_conversion['winner']).astype(int)
-
-# Group by toss_winner and get average conversion
-team_conversion_rate = team_conversion.groupby('toss_winner')['conversion'].mean().reset_index()
-team_conversion_rate = team_conversion_rate.sort_values(by='conversion', ascending=False)
-
-# Plot
-plt.figure(figsize=(12, 6))
-sns.barplot(x='conversion', y='toss_winner', data=team_conversion_rate, palette='coolwarm')
-plt.title('Team-wise Toss to Match Win Conversion Rate')
-plt.xlabel('Conversion Rate')
-plt.ylabel('Team')
-plt.xlim(0, 1)
-plt.grid(True, linestyle='--', alpha=0.3)
-plt.tight_layout()
-plt.show()
 

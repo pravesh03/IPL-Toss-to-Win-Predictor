@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  backend:
+    build: ./backend
+    container_name: ipl-predictor-backend
+    ports:
+      - "5010:5010"
+    volumes:
+      - ./backend:/app
+    environment:
+      - FLASK_ENV=development
+      - FLASK_APP=app.py
+      - FLASK_DEBUG=1
+      - JWT_SECRET_KEY=your-secret-key
+
+  frontend:
+    build: ./frontend
+    container_name: ipl-predictor-frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - REACT_APP_API_URL=http://localhost:5010
+    depends_on:
+      - backend
+    restart: always 
