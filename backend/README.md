@@ -116,7 +116,7 @@ This account is guaranteed to work every time.
 ## 📊 Data Visualization Techniques
 
 ### 1. 🎯 Confusion Matrix
-![Confusion Matrix] (images/confusion_matrix.png)
+![Confusion Matrix](images/confusion_matrix.png)
 
 ### 2. 🔍 Feature Importance
 ![Feature Importance](images/feature_importance.png)
