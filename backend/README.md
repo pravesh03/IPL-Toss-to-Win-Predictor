@@ -127,5 +127,6 @@ This account is guaranteed to work every time.
 ### 4. 🧠 Toss Decision Impact
 ![Toss Win Probability](images/toss_win_probability.png)
 
+
 ## Contributing
 Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
