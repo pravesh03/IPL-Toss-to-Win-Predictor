@@ -70,11 +70,6 @@ python app.py
 
 ---
 
-## 🤝 Contributing
-
-- Fork, branch, commit, and PR as usual!
-- This backend is a showcase of my data analysis, ML, and API skills.
-
 ## Overview
 This is the backend for the IPL Toss-to-Win Predictor application. It provides APIs for user authentication, match predictions, and analysis.
 
@@ -128,5 +123,7 @@ This account is guaranteed to work every time.
 ![Toss Win Probability](../images/toss_win_probability.png)
 
 
-## Contributing
-Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
+## 🤝 Contributing
+
+- Fork, branch, commit, and PR as usual!
+- This backend is a showcase of my data analysis, ML, and API skills.
