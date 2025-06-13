@@ -68,6 +68,21 @@ python app.py
 - **Retraining:**  
   - Easily update the model with new data by running `ipl.py`.
 
+
+## 📊 Data Visualization Techniques
+
+### 1. 🎯 Confusion Matrix
+![Confusion Matrix](../images/confusion_matrix.png)
+
+### 2. 🔍 Feature Importance
+![Feature Importance](../images/feature_importance.png)
+
+### 3. 📈 Team-wise Toss to Win Conversion Rate
+![Conversion Rate](../images/conversion_rate.png)
+
+### 4. 🧠 Toss Decision Impact
+![Toss Win Probability](../images/toss_win_probability.png)
+
 ---
 
 ## Overview
@@ -107,20 +122,6 @@ This account is guaranteed to work every time.
 - `/auth/profile`: Get user profile (requires authentication).
 - `/predict`: Get match predictions (requires authentication).
 - `/analysis/stats`: Get analysis statistics.
-
-## 📊 Data Visualization Techniques
-
-### 1. 🎯 Confusion Matrix
-![Confusion Matrix](../images/confusion_matrix.png)
-
-### 2. 🔍 Feature Importance
-![Feature Importance](../images/feature_importance.png)
-
-### 3. 📈 Team-wise Toss to Win Conversion Rate
-![Conversion Rate](../images/conversion_rate.png)
-
-### 4. 🧠 Toss Decision Impact
-![Toss Win Probability](../images/toss_win_probability.png)
 
 
 ## 🤝 Contributing
