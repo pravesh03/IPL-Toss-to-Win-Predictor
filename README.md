@@ -92,6 +92,14 @@ Looking for a data-driven, full stack developer who can own the entire product l
 Let's talk!
 
 ---
+## Default Test Account
+For testing purposes, you can use the following account:
+
+- **Username:** PRAVESH  
+- **Password:** PRAVESH
+
+This account is guaranteed to work every time.
+
 
 ## 🙋‍♂️ Contributing
 
